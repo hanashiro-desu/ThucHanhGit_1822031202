@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bài thực hành quản lý mã nguồn với Git và GitHub">
-  <title>Thực Hành Git &amp; GitHub | 1822031202</title>
+  <meta name="description" content="KitaDex - web cá nhân đọc truyện mini, bài thực hành quản lý mã nguồn với Git và GitHub">
+  <title>KitaDex | Web cá nhân đọc truyện - 1822031202</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,9 +15,10 @@
   <!-- Thanh điều hướng -->
   <header class="navbar">
     <div class="container nav-inner">
-      <a href="#top" class="logo">Git<b>&amp;</b>GitHub</a>
+      <a href="#top" class="logo">Kita<b>Dex</b></a>
       <ul class="nav-links">
-        <li><a href="#quy-trinh">Quy trình</a></li>
+        <li><a href="#truyen">Truyện</a></li>
+        <li><a href="#quy-trinh">Quy trình Git</a></li>
         <li><a href="#lenh-git">Lệnh Git</a></li>
         <li><a href="#terminal">Terminal</a></li>
         <li><a href="#ky-nang">Kỹ năng</a></li>
@@ -31,11 +32,12 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="reveal">
-          <span class="badge">Bài thực hành quản lý mã nguồn</span>
-          <h1>Quản lý phiên bản với <span class="gradient-text">Git &amp; GitHub</span></h1>
-          <p>Từ khởi tạo repository, commit, phân nhánh cho đến gộp nhánh: toàn bộ quy trình làm việc nhóm hiện đại được thực hành từng bước.</p>
+          <span class="badge">Web cá nhân · bài thực hành Git &amp; GitHub</span>
+          <h1>Kệ truyện mini của <span class="gradient-text">KitaDex</span></h1>
+          <p>Tìm truyện, lưu vào kệ và đọc ngay trên trình duyệt. Trang web này được xây dựng từng bước bằng Git &amp; GitHub: commit, phân nhánh và gộp nhánh.</p>
           <div class="btn-row">
-            <a class="btn btn-primary" href="#quy-trinh">Xem quy trình</a>
+            <a class="btn btn-primary" href="#truyen">Đọc truyện ngay</a>
+            <a class="btn btn-ghost" href="#quy-trinh">Xem quy trình Git</a>
             <a class="btn btn-ghost" href="https://github.com/hanashiro-desu/ThucHanhGit_1822031202" target="_blank" rel="noopener">Mở trên GitHub</a>
           </div>
         </div>
@@ -43,7 +45,7 @@
         <aside class="glass profile-card reveal">
           <div class="avatar">SV</div>
           <h2>Họ và Tên Sinh Viên</h2>
-          <p class="role">Sinh viên thực hành Git &amp; GitHub</p>
+          <p class="role">Chủ nhân KitaDex · sinh viên thực hành Git</p>
           <ul class="info-list">
             <li><span>MSSV</span><span>1822031202</span></li>
             <li><span>Repository</span><span>ThucHanhGit_1822031202</span></li>
@@ -53,11 +55,41 @@
       </div>
     </section>
 
+    <!-- Truyện -->
+    <section id="truyen">
+      <div class="container">
+        <h2 class="section-title reveal">Kệ <span class="gradient-text">truyện</span></h2>
+        <p class="section-sub reveal">Dữ liệu từ API công khai của MangaDex. Chọn tab, tìm theo tên hoặc mở truyện để đọc.</p>
+
+        <div class="dx-toolbar">
+          <form class="dx-search" id="searchForm" role="search">
+            <input id="q" type="search" placeholder="Tìm truyện theo tên..." autocomplete="off" aria-label="Tìm truyện">
+            <button type="submit">Tìm</button>
+          </form>
+          <select id="lang" aria-label="Ngôn ngữ chương">
+            <option value="vi">Tiếng Việt</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+
+        <nav class="dx-tabs" id="tabs">
+          <button class="dx-tab active" data-tab="popular">Phổ biến</button>
+          <button class="dx-tab" data-tab="latest">Mới cập nhật</button>
+          <button class="dx-tab" data-tab="shelf">Kệ của tôi <span id="shelfCount" class="dx-count">0</span></button>
+        </nav>
+
+        <h3 id="heading" class="dx-heading">Truyện phổ biến</h3>
+        <p id="status" class="dx-status" role="status"></p>
+        <div id="grid" class="dx-grid" aria-live="polite"></div>
+        <div class="dx-more"><button id="moreBtn" class="dbtn" hidden>Xem thêm</button></div>
+      </div>
+    </section>
+
     <!-- Quy trình -->
     <section id="quy-trinh">
       <div class="container">
-        <h2 class="section-title reveal">Quy trình <span class="gradient-text">4 bước</span></h2>
-        <p class="section-sub reveal">Các bước đã thực hiện trong bài thực hành, theo đúng thứ tự.</p>
+        <h2 class="section-title reveal">Quy trình <span class="gradient-text">5 bước</span></h2>
+        <p class="section-sub reveal">Các bước đã thực hiện để xây dựng trang web này, theo đúng thứ tự.</p>
 
         <div class="timeline">
           <article class="glass step reveal">
@@ -91,6 +123,14 @@
             <code class="cmd">git checkout main</code>
             <code class="cmd">git merge --no-ff feature/them-giao-dien</code>
             <code class="cmd">git push origin main</code>
+          </article>
+
+          <article class="glass step reveal">
+            <span class="step-no">Bước 05</span>
+            <h3>Nhánh bổ sung: JavaScript</h3>
+            <p>Main giữ index.html và style.css. Nhánh riêng chứa app.js để trang có chức năng đọc truyện, rồi gộp vào main.</p>
+            <code class="cmd">git checkout -b feature/them-javascript</code>
+            <code class="cmd">git merge --no-ff feature/them-javascript</code>
           </article>
         </div>
       </div>
@@ -160,14 +200,38 @@
 
   </main>
 
+  <!-- Chi tiết truyện -->
+  <aside id="detail" class="dx-drawer" hidden aria-label="Chi tiết truyện">
+    <div class="dx-drawer-bg" data-close="detail"></div>
+    <div class="dx-drawer-panel">
+      <button class="dx-x" data-close="detail" aria-label="Đóng">&times;</button>
+      <div id="detailBody"></div>
+    </div>
+  </aside>
+
+  <!-- Trình đọc -->
+  <div id="reader" class="dx-reader" hidden role="dialog" aria-label="Trình đọc truyện">
+    <div class="dx-reader-bar">
+      <button class="dbtn small" id="rClose">&larr; Thoát</button>
+      <span id="rTitle" class="dx-r-title"></span>
+      <div class="dx-r-nav">
+        <button class="dbtn small" id="rPrev">Chương trước</button>
+        <button class="dbtn small" id="rNext">Chương sau</button>
+      </div>
+    </div>
+    <div id="pages" class="dx-pages"></div>
+    <div class="dx-reader-end"><button class="dbtn" id="rNext2">Chương sau &rarr;</button></div>
+  </div>
+
   <footer>
     <div class="container">
-      <p>Bài thực hành Git &amp; GitHub · MSSV 1822031202 ·
+      <p>KitaDex · bài thực hành Git &amp; GitHub · MSSV 1822031202 · dữ liệu từ <a href="https://mangadex.org" target="_blank" rel="noopener">MangaDex</a> ·
         <a href="https://github.com/hanashiro-desu/ThucHanhGit_1822031202" target="_blank" rel="noopener">Xem mã nguồn</a>
       </p>
     </div>
   </footer>
 
+  <script src="app.js"></script>
   <script>
     // Hiệu ứng hiện dần khi cuộn trang
     var items = document.querySelectorAll('.reveal');
